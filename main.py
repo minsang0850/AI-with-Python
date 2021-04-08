@@ -1,22 +1,33 @@
 import numpy as np
-import matplotlib.pyplot as plt
-from sklearn.datasets import load_iris
+import matplotlib.pylab as plt
+import AI_function as af
 
-iris=load_iris()
-X=iris.data[:,:2]
-y=iris.target
-y_name=iris.target_names
+X=np.arange(-5.0,5.0,0.1)
+Y=af.step_function(X)
+# plt.plot(X,Y)
+# plt.ylim(-0.1,1.1)
+# plt.show()
 
-x1_min,x1_max=X[:, 0].min()-.5,X[:, 0].max()+.5
-x2_min,x2_max=X[:, 1].min()-.5,X[:, 1].max()+.5
+X=np.arange(-5.0,5.0,0.1)
+Y=af.sigmoid_function(X)
+# plt.plot(X,Y)
+# plt.ylim(-0.1,1.1)
+# plt.show()
 
-plt.figure(figsize=(8,6))
-plt.scatter(X[:, 0],X[:, 1], c=y, cmap=plt.cm.Set1, edgecolor='k')
+X=np.arange(-5.0,5.0,0.1)
+Y=af.relu_function(X)
+# plt.plot(X,Y)
+# plt.ylim(-0.1,5.1)
+# plt.show()
 
-plt.xlabel('Sepal length')
-plt.ylabel('Sepal width')
+X=np.array([1.0,0.5])
+W1=np.array([[0.1,0.3,0.5],[0.2,0.4,0.6]])
+B1=np.array([0.1,0.2,0.3])
+A,Z=af.compute(X,W1,B1)
+print(A,Z)
+K=af.softmax(X)
+print(K)
+# print(W1.shape)
+# print(X.shape)
+# print(B1.shape)
 
-plt.xlim(x1_min,x1_max)
-plt.ylim(x2_min,x2_max)
-
-plt.show()
